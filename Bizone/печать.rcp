@@ -1,0 +1,108 @@
+[print]
+name = печать
+defaultQuality = OjTnYN4MlFjFU5loxGKw9cTHUHCi1Kt9
+travelSpeedMin = 160
+travelSpeedMax = 180
+firstLayerSpeedMin = 30
+firstLayerSpeedMax = 80
+infillSpeedMin = 50
+infillSpeedMax = 80
+skinSpeedMin = 30
+skinSpeedMax = 80
+infillType = 0
+innerPerimeterMin = 40
+innerPerimeterMax = 80
+outerPerimeterMin = 30
+outerPerimeterMax = 80
+printSpeedMin = 20
+printSpeedMax = 80
+nozzleDiameter = 0.4
+gcodeFlavour = 0
+retractionCombing = True
+combing = 1
+multiVolumeOverlap = 0
+cutOffObjectBottom = 0
+shellThickness = 1.2
+infillTopBottomThickness = 1.2
+infillDensityPercent = 20
+supportType = 1
+platformAdhesion = 0
+dualExtrusion = 0
+wipeAndPrimeTower = True
+oozeShield = False
+enableRetraction = True
+retractionSpeed = 60
+retractionDistance = 3
+multiExtruderSwitchAmount = 16
+startGCode = """
+; Default start code
+G28 ; Home extruder
+G1 Z15 F{Z_TRAVEL_SPEED}
+M107 ; Turn off fan
+G90 ; Absolute positioning
+M82 ; Extruder in absolute mode
+{IF_BED}M190 S{BED}
+; Activate all used extruder
+{IF_EXT0}M104 T0 S{TEMP0}
+G92 E0 ; Reset extruder position
+; Wait for all used extruders to reach temperature
+{IF_EXT0}M109 T0 S{TEMP0}
+"""
+endGCode = """
+; Default end code
+;G1 X0 Y0 Z130 ; Get extruder out of way. Uncomment to use!
+M107 ; Turn off fan
+; Disable all extruder
+G91 ; Relative positioning
+{IF_EXT0}T0
+{IF_EXT0}G1 E-1 ; Reduce filament pressure
+M104 T0 S0
+G90 ; Absolute positioning
+G92 E0 ; Reset extruder position
+M140 S0 ; Disable heated bed
+M84 ; Turn steppers off
+"""
+preSwitchExtruderCode = 
+postSwitchExtruderCode = 
+wipeAndPrimeTowerVolume = 15
+retractionMinimumTravel = 1.5
+minimumExtrusionBeforeRetract = 0
+zhop = 0
+skirtLineCount = 1
+skirtDistance = 2
+skirtMinimumLength = 15
+solidInfillTop = True
+solidInfillBottom = True
+infillOverlapPercent = 15
+supportStructureType = 0
+supportOverhang = 40
+supportFillPercent = 35
+supportDistanceXY = 0.4
+supportDistanceZ = 0.2
+supportExtruder = -1
+spiralizeOuterContour = False
+brimWidth = 2
+raftExtraMargin = 8
+raftLineSpacing = 1
+raftBaseThickness = 0.3
+raftBaseWidth = 0.7
+raftInterfaceThickness = 0.2
+raftInterfaceLineWidth = 0.2
+raftAirGap = 0
+raftAirGapLayer0 = 0
+raftSurfaceLayer = 1
+fixCombineEverythingA = True
+fixCombineEverythingB = False
+fixKeepOpenFaces = False
+fixExtensiveStitching = False
+fanFullAtHeight = 0.5
+perimeterBeforeInfill = True
+minimumSpeed = 10
+coolHeadLift = False
+numQuality = 1
+[quality_0]
+name = 0.2 mm
+signature = OjTnYN4MlFjFU5loxGKw9cTHUHCi1Kt9
+layerHeight = 0.2
+layer0widthPercent = 100
+firstLayerHeight = 0.25
