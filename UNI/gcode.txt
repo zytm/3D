@@ -1,0 +1,36 @@
+start
+
+;Sliced at: {day} {date} {time}
+G21
+G90
+M82
+M220 S100
+M221 S100
+G28
+M190 S{material_bed_temperature_layer_0}
+M109 S{material_print_temperature_layer_0}
+G1 F600 Z15
+G92 E0
+G1 F300 E10
+M117 Printing...
+;
+
+
+
+
+
+
+end
+
+G91
+G1 E-1 F600
+G1 Z+1 E-3 X-20 Y-20 F4800
+M104 S0
+M106 S0
+M140 S0
+M220 S100
+M221 S100
+G28
+G90
+M84
+;
